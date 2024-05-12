@@ -1,3 +1,8 @@
+/*
+ * Daniel Decio
+ * BIT504 Assignment 2
+ * Student Number 5099031
+*/
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -26,9 +31,11 @@ public class GameMain extends JPanel implements MouseListener{
 	// the game board 
 	private Board board;
 	 	 
-	//TODO: create the enumeration for the variable below (GameState currentState)
-	//HINT all of the states you require are shown in the code within GameMain
+	//Done: Created the enumeration for the variable below (GameState currentState)
 	private GameState currentState; 
+	private enum GameState {
+        Playing, Draw, Cross_won, Nought_won //Enumerated possible game states that appeared in the code
+        }
 	
 	// the current player
 	private Player currentPlayer; 
@@ -38,9 +45,9 @@ public class GameMain extends JPanel implements MouseListener{
 
 	/** Constructor to setup the UI and game components on the panel */
 	public GameMain() {   
-		
-		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.          
-	    
+
+		//Done: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.   
+        addMouseListener (this); 
 	    
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
@@ -55,12 +62,12 @@ public class GameMain extends JPanel implements MouseListener{
 		// account for statusBar height in overall height
 		setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT + 30));
 		
-		
-		// TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
 
+		//Done: Create a new instance of the game "Board"class. 
+        board = new Board(); 
 		
-		//TODO: call the method to initialise the game board
-
+		//Done: Call the method to initialise the game board
+        initGame(); //Method found below
 	}
 	
 	public static void main(String[] args) {
