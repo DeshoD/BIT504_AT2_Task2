@@ -95,16 +95,16 @@ public class GameMain extends JPanel implements MouseListener{
 		if (currentState == GameState.Playing) {          
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
-			
-				//TODO: use the status bar to display the message "X"'s Turn
 
+				//Done: use the status bar to display the message "X"'s Turn
+                statusBar.setText("X's Turn");
 				
 			} else {    
-				
-				//TODO: use the status bar to display the message "O"'s Turn
 
-				
+				//Done: use the status bar to display the message "O"'s Turn
+                statusBar.setText("O's Turn");
 			}       
+			
 			} else if (currentState == GameState.Draw) {          
 				statusBar.setForeground(Color.RED);          
 				statusBar.setText("It's a Draw! Click to play again.");       
@@ -139,15 +139,19 @@ public class GameMain extends JPanel implements MouseListener{
 		public void updateGame(Player thePlayer, int row, int col) {
 			//check for win after play
 			if(board.hasWon(thePlayer, row, col)) {
-				
-				// TODO: check which player has won and update the currentstate to the appropriate gamestate for the winner
 
+				// Done: check which player has won and update the currentstate to the appropriate gamestate for the winner
+	            if (thePlayer == Player.Cross) {
+	                currentState = GameState.Cross_won;	//Cross wins
+	            } else {
+	                currentState = GameState.Nought_won; // Nought wins
+	            }
+	            
 				
 			} else 
 				if (board.isDraw ()) {
-					
-				// TODO: set the currentstate to the draw gamestate
-
+				// Done: set the currentstate to the draw gamestate
+			        currentState = GameState.Draw;	
 			}
 			//otherwise no change to current state of playing
 		}
@@ -183,8 +187,8 @@ public class GameMain extends JPanel implements MouseListener{
 			// game over and restart              
 			initGame();            
 		}   
-		
-		//TODO: redraw the graphics on the UI          
+		//Done: redraw the graphics on the UI        
+		repaint();	  
            
 	}
 		
